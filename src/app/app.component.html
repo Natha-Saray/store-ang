@@ -1,4 +1,36 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<!-- ngModule directiva que trabaja en forms -->
+<input type="text" [(ngModel)]="title" />
+{{ title }}
+
+<app-product></app-product>
+
+<div [ngSwitch]="title">
+  <p *ngSwitchCase="'natha'">This is Natha</p>
+  <p *ngSwitchCase="'bob'">This is Bob</p>
+  <p *ngSwitchCase="'pepe'">This is Pepe</p>
+  <p *ngSwitchDefault>type something!!</p>
+</div>
+
+<!-- click ejecuta un metodo el cual estara en el componente -->
+<button (click)="add()">Add</button>
+
+<ul>
+  <!-- se aplica la directiva *ngFor que es la qie itera en <li></li> - para la posicion del arreglo index as i-->
+  <li *ngIf="items.length === 0">List is empty</li>
+  <li *ngFor="let name of items; index as i">
+    <!-- luego se utiliza la variable iteradora e esta caso name   -->
+    {{ name }} {{ i }}
+    <!-- i es el parametro de entrada para la funcion delete -->
+    <button (click)="delete(i)">Delete</button>
+  </li>
+</ul>
+
+<div *ngFor="let product of products">
+  <!-- con la variable que itera en este caso product, se selecciona los atributos del objeto que se este iterando -->
+  {{ product.title }}
+  <!-- llaves para modificar un atributo html   -->
+  <img [src]="product.image" alt="" />
+  <!-- <img src="{{product.image}}"> -->
+  <!-- {{ product.image }} -->
+  {{ product.price }}
+</div>
